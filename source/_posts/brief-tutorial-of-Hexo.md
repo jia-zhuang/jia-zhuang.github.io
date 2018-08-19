@@ -281,7 +281,7 @@ type: categories
 ---
 ```
 
-### 修改头像
+#### 修改头像
 
 将图片放入 theme/next/source/images 目录下，并在 Next 配置文件 theme/next/_config.yml 文件中引用图片：
 
