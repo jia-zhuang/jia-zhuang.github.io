@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: BigBlog
-subtitle: the bigest blog of the world
-description: about every thing
-author: Adam
+title: 贾壮的个人网站
+subtitle: 关于这个人的兴趣
+description: 梦是上帝的语言
+author: 贾壮
 language: zh-Hans
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://jiazhuang.coding.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -77,6 +77,9 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: git@git.coding.net:jiazhuang/jiazhuang.coding.me.git
-  branch: coding-pages
+  - type: git
+    repo: git@git.coding.net:jiazhuang/jiazhuang.coding.me.git
+    branch: coding-pages
+  - type: git
+    repo: git@github.com:jia-zhuang/jia-zhuang.github.io.git
+    branch: master
