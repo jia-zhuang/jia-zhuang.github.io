@@ -1,15 +1,25 @@
 ---
 title: Hexo 简明教程
 date: 2018-08-16 15:28:36
-tags: Hexo
-
+tags: 
+	- Hexo
+	- Tutorial
+categories:
+	- Tutorial
+	- Markdown
 ---
 
-# 1. 安装
+Hexo 是一个基于 node.js 的博客框架。它简单、强大，支持 Markdown 写作，一键就可以部署到 [GitHub](https://github.com/) 或 [Coding](https://coding.net/) 平台，瞬间拥有个人博客网站，是程序员、技术宅居家必备利器。同时 Hexo 还有丰富的主题和插件可供定制和扩展，适合有折腾癖好的同学深入探索。
+
+这是一篇极简的使用教程，涉及到 Hexo 安装、配置、部署以及网站备份（方便多地写作更新）等内容。基本满足了想快速上手使用的同学的需求。更详细的使用方法，可以参考 [Hexo 中文文档](https://hexo.io/zh-cn/docs/)和 [Hexo Next 主题中文文档](http://theme-next.iissnan.com/)。
+
+<!-- more -->
+
+## 安装
 
 建议在 Linux 系统下安装和使用 Hexo，即便是 Win10 系统，也可以通过安装 Linux 子系统（WLS）方便地使用 Linux 环境。
 
-**安装前提**
+安装前提
 - git
 - node.js
 
@@ -26,17 +36,16 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-**安装 Hexo**
+
+安装 Hexo
 
 ```bash
 sudo npm install -g hexo-cli
 ```
 
-# 2. 配置
+## 使用
 
-简单讲，Hexo 就是将 Markdown 格式的文件转化成 HTML。给习惯 Markdown 写博客的人们提供了极大的方便。
-
-### 初始化一个本地网站
+### 建站
 
 ```bash
 hexo init blog    # blog 是自己起的目录名
@@ -82,9 +91,9 @@ Hexo 是一个 node.js 应用，可以通过 npm 安装各种扩展包，这两�
 
 主题文件夹，Hexo 会根据主题来生成不同风格的页面。
 
-### 写博客
+### 写作
 
-**新建文章**
+#### 新建文章
 
 ```bash
 hexo new "Write blog using markdown"
@@ -109,7 +118,7 @@ categories:
 
 接着这部分就是文章的正文，遵循 Markdown 格式。
 
-**生成静态页面**
+#### 生成静态页面
 
 ```bash
 hexo generate
@@ -117,7 +126,7 @@ hexo generate
 hexo g
 ```
 
-**启动网站**
+#### 启动网站
 
 ```bash
 hexo server
@@ -125,7 +134,7 @@ hexo server
 hexo s
 ```
 
-打开浏览器，在地址栏中输入 http://localhost:4000 就可以看到自己的博客了。
+打开浏览器，在地址栏中输入 http://localhost:4000 就可以看到自己的博客了。本地网站只是方便开发时预览效果，其他人无法通过互联网访问。
 
 *如果无法显示，可能是 4000 端口被占用了，可以使用如下命令指定端口*
 ```bash
@@ -143,7 +152,25 @@ hexo.config.server = assign({
 }, hexo.config.server);
 ```
 
-### 将网站部署到 Github 或 Coding
+#### 插入图片
+
+在 _config.yml 开启资源文件夹
+
+```
+post_asset_folder: true
+```
+
+这样，在 _posts 目录下会生成一个与文章同名的文件夹。把需要插入到文章中的图片放到该文件夹中，并在写文章时通过如下标签引用即可。
+
+```
+{% asset_img <图片名> [图片标题] %}
+```
+
+### 部署到 Github 或 Coding
+
+首先在 Github 中新建名为 jia-zhuang.github.io 的项目，这样部署成功后，就可以通过链接 https://jia-zhuang.github.io 来访问网站了。
+
+*若是在 Coding 中，项目名应为 jiazhuang.coding.me，网站访问链接为 http://jiazhuang.coding.me*
 
 安装 hexo-deployer-git
 
@@ -155,19 +182,23 @@ npm install hexo-deployer-git --save
 
 ```
 deploy:
-  type: git
-  repo: git@git.coding.net:jiazhuang/jiazhuang.coding.me.git
-  branch: coding-pages
+  - type: git
+    repo: git@git.coding.net:jiazhuang/jiazhuang.coding.me.git
+    branch: coding-pages
+  - type: git
+    repo: git@github.com:jia-zhuang/jia-zhuang.github.io.git
+    branch: master
 ```
 
-**注意：我们这里使用 coding-pages 分支部署网站，把 master 分支留给整个 Hexo 的备份**
+*注意：我们这里使用 coding-pages 分支部署网站，把 master 分支留给整个 Hexo 的备份；而Gibhub 个人主页只能使用 master 分支*
 
+在 Github 和 Coding 中开启 Github pages 和 Coding pages 服务，选择对应分支。
 
-## 安装 Next 主题
+## 使用 Next 主题
+
+Hexo 默认的 Landscape 主题不够美观，换成流行的 Next 主题吧！通过对 Next 主题简单的设置，基本可以满足新手所有的需求。
 
 ### 安装和启用
-
-Hexo 默认的 Landscape 主题不够美观，换成流行的 Next 主题吧！在项目根目录下运行如下命令：
 
 ```bash
 git clone https://github.com/iissnan/hexo-theme-next themes/next
@@ -186,7 +217,7 @@ theme: next
 
 Next 主题有自己的配置文件，位于 theme/next/_config.yml，里面有丰富的配置，详细可以参考 [Next中文文档](http://theme-next.iissnan.com/)。这里列出几个常用配置。
 
-- 更换风格
+#### 更换风格
 
 ```
 # Schemes
@@ -199,7 +230,7 @@ scheme: Mist
 一共有四种风格，可以通过注释来开启和关闭某个风格。
 
 
-- 开启数学公式支持
+#### 开启数学公式支持
 
 ```
 mathjax:
@@ -208,7 +239,7 @@ mathjax:
   cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
 ```
 
-- 添加邮箱和 Github 链接
+#### 添加邮箱和 Github 链接
 
 ```
 social:
@@ -216,7 +247,7 @@ social:
   E-Mail: mailto:jiazzzz@qq.com || envelope
 ```
 
-- 设置菜单
+#### 设置菜单
 
 ```
 menu:
@@ -250,4 +281,17 @@ type: categories
 ---
 ```
 
+### 修改头像
+
+将图片放入 theme/next/source/images 目录下，并在 Next 配置文件 theme/next/_config.yml 文件中引用图片：
+
+```
+avatar: /images/gene.jpg
+```
+
+## 其他资源
+
+除 Next 之外，Hexo 还有非常丰富的主题，可以浏览 [Hexo 官网](https://hexo.io/themes/)寻找适合自己口味的主题。
+
+随着博客数量和网站需求的增加，可能需要多种多样的扩展功能，可以在 [Hexo 官网插件页面](https://hexo.io/plugins/)找当满足自己需求的插件。
 

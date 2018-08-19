@@ -38,6 +38,10 @@ Do not just seek happiness for yourself. Seek happiness for all. Through kindnes
 > **David Levithan** *- Wide Awake*
 
 
+```c
+#include <stdio.h>
+
+```
 
 ![gene](gene.jpg)
 
