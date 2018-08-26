@@ -213,10 +213,82 @@ union(filled_set, other_set) # => Set{Int64}(1,2,3,4,5,6)
 setdiff(Set([1,2,3,4]),Set([2,3,5])) # => Set{Int64}(1,4)
 ```
 
-
 ### 控制流
 
+```julia
+# 条件
+# 缩进不是必需的
+some_var = 5
+if some_var > 10
+	println("$some_var is bigger than 10")
+elseif some_var > 10
+	println("$some_var is smaller than 10")
+else
+	println("$some_var is equal to 10")
+end
+
+# 循环
+for animal = ["dog", "cat", "mouse"]
+    println("$animal is a mammal")
+    # You can use $ to interpolate variables or expression into strings
+end
+
+# You can use 'in' instead of '='.
+for animal in ["dog", "cat", "mouse"]
+    println("$animal is a mammal")
+end
+
+for pair in Dict("dog" => "mammal", "cat" => "mammal", "mouse" => "mammal")
+    from, to = pair
+    println("$from is a $to")
+end
+
+for (k, v) in Dict("dog" => "mammal", "cat" => "mammal", "mouse" => "mammal")
+    println("$k is a $v")
+end
+
+# While loops loop while a condition is true
+let x = 0
+    while x < 4
+        println(x)
+        x += 1  # Shorthand for x = x + 1
+    end
+end
+
+# Handle exceptions with a try/catch block
+try
+    error("help")
+catch e
+    println("caught it $e")
+end
+# => caught it ErrorException("help")
+
+```
+
 ### 函数
+
+```julia
+function add(x, y)
+    println("x is $x and y is $y")
+
+    # Functions return the value of their last statement
+    x + y
+end
+
+add(5, 6)  # => 11 after printing out "x is 5 and y is 6"
+
+# Compact assignment of functions
+f_add(x, y) = x + y  # => "f (generic function with 1 method)"
+f_add(3, 4)  # => 7
+
+# Function can also return multiple values as tuple
+fn(x, y) = x + y, x - y
+fn(3, 4)  # => (7, -1)
+
+
+```
+
+
 
 ### 类型
 
